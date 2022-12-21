@@ -1,0 +1,91 @@
+2022-12-21 22:23:26.084 +01:00 [INF] User profile is available. Using '/Users/maciejw/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2022-12-21 22:23:26.603 +01:00 [INF] Entity Framework Core 6.0.8 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.8' with options: None
+2022-12-21 22:23:26.838 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2022-12-21 22:23:26.908 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Priority" INTEGER NOT NULL
+);
+2022-12-21 22:23:26.908 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+    "Title" TEXT NOT NULL,
+    "Description" TEXT NOT NULL,
+    "IsDone" INTEGER NOT NULL,
+    "ProjectId" INTEGER NULL,
+    CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2022-12-21 22:23:26.908 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2022-12-21 22:23:26.962 +01:00 [INF] Entity Framework Core 6.0.8 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.Sqlite:6.0.8' with options: None
+2022-12-21 22:23:27.057 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2022-12-21 22:23:27.074 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2022-12-21 22:23:27.077 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2022-12-21 22:23:27.155 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1);
+SELECT "Id"
+FROM "Projects"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-12-21 22:23:27.168 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (Size = 31), @p3='?' (DbType = Boolean), @p4='?' (DbType = Int32), @p5='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-12-21 22:23:27.168 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 81), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-12-21 22:23:27.169 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 59), @p1='?' (DbType = Boolean), @p2='?' (DbType = Int32), @p3='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3);
+SELECT "Id"
+FROM "ToDoItems"
+WHERE changes() = 1 AND "rowid" = last_insert_rowid();
+2022-12-21 22:23:27.374 +01:00 [INF] Now listening on: http://localhost:57679
+2022-12-21 22:23:27.376 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-12-21 22:23:27.377 +01:00 [INF] Hosting environment: Development
+2022-12-21 22:23:27.377 +01:00 [INF] Content root path: /Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/
+2022-12-21 22:25:11.062 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/ - -
+2022-12-21 22:25:11.084 +01:00 [WRN] Failed to determine the https port for redirect.
+2022-12-21 22:25:11.103 +01:00 [INF] Executing endpoint 'cleanarch5.Web.Controllers.HomeController.Index (cleanarch5.Web)'
+2022-12-21 22:25:11.110 +01:00 [INF] Route matched with {action = "Index", controller = "Home", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller cleanarch5.Web.Controllers.HomeController (cleanarch5.Web).
+2022-12-21 22:25:11.118 +01:00 [INF] Executing ViewResult, running view Index.
+2022-12-21 22:25:11.320 +01:00 [INF] Executed ViewResult - view Index executed in 205.0457ms.
+2022-12-21 22:25:11.321 +01:00 [INF] Executed action cleanarch5.Web.Controllers.HomeController.Index (cleanarch5.Web) in 210.8553ms
+2022-12-21 22:25:11.321 +01:00 [INF] Executed endpoint 'cleanarch5.Web.Controllers.HomeController.Index (cleanarch5.Web)'
+2022-12-21 22:25:11.327 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/ - - - 200 - text/html;+charset=utf-8 268.7946ms
+2022-12-21 22:25:11.336 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/lib/bootstrap/dist/js/bootstrap.bundle.min.js - -
+2022-12-21 22:25:11.336 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/cleanarch5.Web.styles.css?v=LzA1Mj7LkW4luZ5YW8eoTzjTiucOg86WbUSvKucQ9sk - -
+2022-12-21 22:25:11.337 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/lib/jquery/dist/jquery.min.js - -
+2022-12-21 22:25:11.355 +01:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/js/bootstrap.bundle.min.js'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js'
+2022-12-21 22:25:11.355 +01:00 [INF] Sending file. Request path: '/lib/jquery/dist/jquery.min.js'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/wwwroot/lib/jquery/dist/jquery.min.js'
+2022-12-21 22:25:11.355 +01:00 [INF] Sending file. Request path: '/cleanarch5.Web.styles.css'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/obj/Debug/net6.0/scopedcss/bundle/cleanarch5.Web.styles.css'
+2022-12-21 22:25:11.356 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/lib/bootstrap/dist/js/bootstrap.bundle.min.js - - - 200 78474 application/javascript 19.4921ms
+2022-12-21 22:25:11.356 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/lib/jquery/dist/jquery.min.js - - - 200 89478 application/javascript 19.5641ms
+2022-12-21 22:25:11.356 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/cleanarch5.Web.styles.css?v=LzA1Mj7LkW4luZ5YW8eoTzjTiucOg86WbUSvKucQ9sk - - - 200 1082 text/css 19.4906ms
+2022-12-21 22:25:11.448 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - -
+2022-12-21 22:25:11.448 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - -
+2022-12-21 22:25:11.448 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/lib/bootstrap/dist/css/bootstrap.min.css - -
+2022-12-21 22:25:11.451 +01:00 [INF] Sending file. Request path: '/lib/bootstrap/dist/css/bootstrap.min.css'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css'
+2022-12-21 22:25:11.451 +01:00 [INF] Sending file. Request path: '/css/site.css'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/wwwroot/css/site.css'
+2022-12-21 22:25:11.451 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/lib/bootstrap/dist/css/bootstrap.min.css - - - 200 162726 text/css 2.7016ms
+2022-12-21 22:25:11.451 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/css/site.css?v=AKvNjO3dCPPS0eSU1Ez8T2wI280i08yGycV9ndytL-c - - - 200 194 text/css 2.7422ms
+2022-12-21 22:25:11.451 +01:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/wwwroot/js/site.js'
+2022-12-21 22:25:11.451 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0 - - - 200 230 application/javascript 2.8947ms
+2022-12-21 22:25:11.519 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:57679/favicon.ico - -
+2022-12-21 22:25:11.520 +01:00 [INF] Sending file. Request path: '/favicon.ico'. Physical path: '/Users/maciejw/Projects/cleanarch5/src/cleanarch5.Web/wwwroot/favicon.ico'
+2022-12-21 22:25:11.520 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:57679/favicon.ico - - - 200 5430 image/x-icon 1.0648ms
+2022-12-21 22:25:37.137 +01:00 [INF] Application is shutting down...
