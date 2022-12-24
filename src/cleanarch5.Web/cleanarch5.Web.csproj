@@ -8,7 +8,6 @@
     <WebProjectMode>true</WebProjectMode>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <PublishReadyToRun>True</PublishReadyToRun>
   </PropertyGroup>
   
   <ItemGroup>
@@ -25,7 +24,6 @@
     <PackageReference Include="Serilog.AspNetCore" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel"/>
-    <FunctionsPreservedDependencies Include="Microsoft.Extensions.DependencyModel.dll" />
   </ItemGroup>
   
   <ItemGroup>
