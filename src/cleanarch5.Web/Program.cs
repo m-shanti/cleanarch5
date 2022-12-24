@@ -6,13 +6,13 @@ using cleanarch5.Infrastructure;
 using cleanarch5.Infrastructure.Data;
 using cleanarch5.Web;
 using Microsoft.OpenApi.Models;
-using Serilog;
+// using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
+//builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
